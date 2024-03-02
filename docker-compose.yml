@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mongo:7.0.5
+    restart: always
+    ports:
+      - '27017:27017'
+    container_name: nodepop-adv-db
+    volumes:
+      - mongo:/data/db
+
+  # app:
+  #   depends_on:
+  #     - db
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: nodepop-adv-app
+  #   container_name: nodepop-app
+  #   ports:
+  #     - ${PORT}:${PORT}
+  #   environment:
+  #     PORT: ${PORT}
+  #     MONGO_URL: mongodb://nodepop-adv-db
+  #     MONGO_DB_NAME: ${MONGO_DB_NAME}
+  #     JWT_SEED: ${JWT_SEED}
+  #     PUBLIC_FOLDER: ${PUBLIC_FOLDER}
+  #     UPLOADS_FOLDER: ${UPLOADS_FOLDER}
+
+  # thumbnail:
+  #   depends_on:
+  #     - app
+  #   build:
+  #     context: .
+  #     target: thumbnail-microservice
+  #     dockerfile: Dockerfile
+  #   container_name: nodepop-thumbnail
+
+volumes:
+  mongo:
+    external: false

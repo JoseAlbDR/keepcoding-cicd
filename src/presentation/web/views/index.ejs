@@ -1,0 +1,34 @@
+<%- include("_header") %>
+ <section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase"><%= __("Product List") %></h2>
+            <h3 class="section-subheading text-muted"><%= __("Here is the product list") %></h3>
+        </div>
+        <div class="row">
+            <% products.forEach(product => { %>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <div >
+                        <img class="img-fluid w-100" src="<%= product.image %>" alt="..." />
+                    </div>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading"><%= product.name %></div>
+                        <div class="portfolio-caption-subheading text-muted">
+                        <% if(product.sale) {%> 
+                            On Sale 
+                        <%} else {%> 
+                            Searching 
+                        <% } %></div>
+                        <div class="portfolio-caption-subheading"><%= product.price %>€</div>
+                        <div class="portfolio-caption-subheading"><%= product.tags.join(", ") %></div>
+                    </div>
+                </div>
+            </div>
+             <% }) %>
+        </div>
+    </div>
+</section>
+
+<%- include("_footer") %>
